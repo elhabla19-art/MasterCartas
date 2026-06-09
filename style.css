@@ -1,0 +1,304 @@
+body {
+    background: #5a3d55;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #5e6253;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #b49a83;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+    margin-bottom: 15px;
+}
+
+.columnas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+#mazo, #cartaDescubierta {
+    width: 240px;
+    height: 336px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#mazo:hover, #cartaDescubierta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+#areaCartas, #areaDescubierta {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 336px;
+} 
+
+#areaCartas div, #areaDescubierta div {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 12px;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #a49c92;
+}
+
+/*BOTONES*/
+button {
+    cursor: pointer;
+    background: #a49c92;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+    margin-top: 10px;
+}
+
+#btnMezclar:hover, #guardarReglaBtn:hover, #btnReinicio:hover, #cerrarHistorialBtn:hover, #cerrarZoomBtn:hover {
+    background: #2c3e50;
+    transform: scale(1.00);
+}
+
+#btnMezclar:active, #guardarReglaBtn:active, #btnReinicio:active, #cerrarHistorialBtn:active, #cerrarZoomBtn:active  {
+    transform: scale(0.90);
+}
+
+/*MODALES*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background: #7e3e28;
+    padding: 25px;
+    border-radius: 16px;
+    border: 2px solid #4b2e19;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+#modalEspecial textarea {
+    background: #181818ff;
+    color: #a49c92;
+    border: 2px solid #4b2e19;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: inherit;
+}
+
+.regla-texto {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #b49a83;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    word-wrap: break-word;
+    border: 1px solid #4b2e19;
+}
+
+#zoomTexto {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #b49a83;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    max-width: 80%;
+    word-wrap: break-word;
+    display: none;
+    border: 1px solid #4b2e19;
+}
+
+#zoomImg {
+    width: 480px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+#historialLista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.historial-item {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.historial-item img {
+    width: 160px;
+    margin: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.historial-item:hover {
+    transform: scale(1.05);
+}
+
+/*REGLAS*/
+#areaReglas {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#reglasContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    min-height: 250px;
+}
+
+#reglasContainer > div {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    width: 336px;
+    height: 240px;
+}
+
+#reglasContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#reglasContainer > div:hover {
+    transform: translateY(-5px);
+}
+
+#reglasContainer > div:hover img {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+#reglasContainer .regla-texto {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+/* RESPONSIVE MOVIL */
+
+@media (max-width: 768px) {
+    
+    /* Título más pequeño */
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    
+    /* Cartas más pequeñas */
+    #mazo, #cartaDescubierta {
+        width: 200px;
+        height: 280px;
+    }
+    
+    /* Áreas con menos padding */
+    #areaCartas, #areaDescubierta {
+        padding: 15px;
+        max-width: 280px;
+    }
+    
+    /* Reglas más compactas */
+    #reglasContainer {
+        gap: 15px;
+    }
+    
+    #reglasContainer > div {
+        width: 280px;
+        height: 200px;
+    }
+    
+    /* Texto de reglas más pequeño */
+    #reglasContainer .regla-texto {
+        font-size: 16px;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+        padding: 3px;
+    }
+    
+    /* Botones más pequeños */
+    button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    
+    /* Modal de zoom: imagen más pequeña */
+    #zoomImg {
+        width: 480px;
+        height: auto;
+    }
+    
+    /* Cerrar zoom más cerca */
+    .cerrar-zoom-btn {
+        top: -30px;
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    /* Historial: cartas más pequeñas */
+    .historial-item img {
+        width: 200px;
+    }
+
+}

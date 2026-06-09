@@ -1,0 +1,15 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Editor de código
+.vscode/
+.idea/
+
+# Imágenes (opcional - solo si pesan mucho)
+# imagenes/*.png
+# imagenes/*.jpg
+
+# Archivos temporales
+*.tmp
+*.log

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MasterCartas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <h1>MasterC</h1>
+
+    <div id="areaReglas">
+        <h3>Mandatos</h3>
+        <div id="reglasContainer"></div>
+    </div>
+
+    <div class="columnas">
+        <div id="areaCartas">
+            <img id="mazo" src="imagenes/MasterCartas_Carta0.png" alt="Reverso de Carta">
+            <div>Restantes: <span id="contadorCartas" style="font-weight: bold">0</span></div>
+            <button id="btnMezclar">Mezclar</button>
+        </div>
+        
+        <div id="areaDescubierta">
+            <img id="cartaDescubierta" src="imagenes/MasterCartas_Vacio.png" alt="Mesa Vacia">
+            <div>Descartadas: <span id="contadorDescarte" style="font-weight: bold">0</span></div>
+            <button id="btnReinicio">Reinicio</button>
+        </div>
+    </div>
+
+    <div id="modalEspecial" class="modal">
+        <div class="modal-contenido">
+            <h3>Regla Especial</h3>
+            <textarea id="textoRegla" rows="3" cols="30"></textarea>
+            <br><br>
+            <button id="guardarReglaBtn">Guardar</button>
+        </div>
+    </div>
+    
+    <div id="modalHistorial" class="modal">
+        <div class="modal-contenido historial-contenido">
+            <h3>Cartas Descartadas</h3>
+            <button id="cerrarHistorialBtn" class="cerrar-btn">Cerrar</button>
+            <div id="historialLista" class="historial-lista"></div>
+        </div>
+    </div>
+
+    <div id="modalZoom" class="modal zoom-modal">
+        <div class="zoom-contenido">
+            <img id="zoomImg">
+            <div id="zoomTexto"></div>
+            <button id="cerrarZoomBtn" class="cerrar-zoom-btn">✕</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

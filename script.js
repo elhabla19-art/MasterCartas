@@ -208,7 +208,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const botonGuardar = document.getElementById("guardarReglaBtn");
     botonGuardar.addEventListener("click", guardarEspecial);
 
-
     const botonMezclar = document.getElementById("btnMezclar");
     botonMezclar.addEventListener("click", function() {
         const nuevoMazo = [...mazo, ...descarte]
@@ -222,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const cerrarHistorial = document.getElementById("cerrarHistorialBtn");
     cerrarHistorial.addEventListener("click", function() {
         document.getElementById("modalHistorial").style.display = "none";
-    })
+    });
 
     const botonReinicio = document.getElementById("btnReinicio");
     botonReinicio.addEventListener("click", reiniciarJuego);
@@ -233,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const cerrarZoom = document.getElementById("cerrarZoomBtn");
     cerrarZoom.addEventListener("click", function() {
         document.getElementById("modalZoom").style.display = "none";
-    })
+    });
 
     const mostrarCarta = document.getElementById("mazo");
     mostrarCarta.addEventListener("click", function() {
@@ -248,7 +247,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("contadorDescarte").innerText = descarte.length;
                 cartasRestantes();
                 console.log("Descarte", descarte);
-
             } else if (carta.tipo === "regla") {
                 reglasMaximas(carta);
                 console.log("Regla", reglasVisibles);
@@ -256,10 +254,30 @@ document.addEventListener("DOMContentLoaded", function() {
                 cartaEspecial = carta;
                 document.getElementById("modalEspecial").style.display = "flex";
             }
-
         } else {
             alert("Mezcla las Cartas");
         }
-    })
+    });
+    
+    const modalEspecial = document.getElementById("modalEspecial");
+    modalEspecial.addEventListener("click", function(e) {
+        if (e.target === modalEspecial) {
+            modalEspecial.style.display = "none";
+        }
+    });
+
+    const modalHistorial = document.getElementById("modalHistorial");
+    modalHistorial.addEventListener("click", function(e) {
+        if (e.target === modalHistorial) {
+            modalHistorial.style.display = "none";
+        }
+    });
+
+    const modalZoom = document.getElementById("modalZoom");
+    modalZoom.addEventListener("click", function(e) {
+        if (e.target === modalZoom) {
+            modalZoom.style.display = "none";
+        }
+    });
 
 });

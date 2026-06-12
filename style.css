@@ -6,6 +6,10 @@ body {
     padding: 20px;
 }
 
+body:has(.modal[style*="display: flex"]) {
+    overflow: hidden;
+}
+
 h1 {
     text-align: center;
     color: #5e6253;
@@ -94,6 +98,7 @@ button {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    overflow-y: auto;
 }
 
 .modal-contenido {
@@ -238,7 +243,7 @@ button {
 /* RESPONSIVE MOVIL */
 
 @media (max-width: 768px) {
-    
+
     /* Título más pequeño */
     h1 {
         font-size: 1.8em;
@@ -301,4 +306,12 @@ button {
         width: 200px;
     }
 
+}
+/*Sin celeccion celeste en movil*/
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus, img:focus, div:focus {
+    outline: none;
 }

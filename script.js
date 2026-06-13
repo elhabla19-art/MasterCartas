@@ -78,6 +78,8 @@ let cartaEspecial = null;
 
 let cartaActual = null;
 
+let anguloZoomActual = 0;
+
 //Funciones
 function cartasRestantes() {
     let contadorCartas = document.getElementById("contadorCartas");
@@ -171,7 +173,10 @@ function mostrarZoom(carta) {
     const textoZoom = document.getElementById("zoomTexto");
 
     img.src = "imagenes/" + carta.imagen;
-    modal.style.display = "flex";
+    
+    anguloZoomActual = 0;
+    img.style.transform = "rotate(0deg)";
+    
     if (carta.textoPersonalizado && carta.textoPersonalizado !== "") {
         textoZoom.textContent = carta.textoPersonalizado;
         textoZoom.style.display = "block";
@@ -224,7 +229,51 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const botonReinicio = document.getElementById("btnReinicio");
-    botonReinicio.addEventListener("click", reiniciarJuego);
+    let intervaloProgreso = null;
+    let progreso = 0;
+    
+    function iniciarPresionado() {
+        progreso = 0;
+        actualizarProgreso();
+        
+        intervaloProgreso = setInterval(function() {
+            progreso += 5;
+            if (progreso >= 100) {
+                progreso = 100;
+                actualizarProgreso();
+                clearInterval(intervaloProgreso);
+                intervaloProgreso = null;
+                reiniciarJuego();
+                progreso = 0;
+                actualizarProgreso();
+                botonReinicio.classList.remove("llenando");
+            } else {
+                actualizarProgreso();
+            }
+        }, 50);
+    }
+    
+    function actualizarProgreso() {
+        botonReinicio.style.setProperty('--progreso', progreso + '%');
+        botonReinicio.classList.add("llenando");
+    }
+    
+    function cancelarPresionado() {
+        if (intervaloProgreso) {
+            clearInterval(intervaloProgreso);
+            intervaloProgreso = null;
+        }
+        progreso = 0;
+        actualizarProgreso();
+        botonReinicio.classList.remove("llenando");
+    }
+    
+    botonReinicio.addEventListener("mousedown", iniciarPresionado);
+    botonReinicio.addEventListener("mouseup", cancelarPresionado);
+    botonReinicio.addEventListener("mouseleave", cancelarPresionado);
+    botonReinicio.addEventListener("touchstart", iniciarPresionado);
+    botonReinicio.addEventListener("touchend", cancelarPresionado);
+    botonReinicio.addEventListener("touchcancel", cancelarPresionado);
 
     const zoomCarta = document.getElementById("cartaDescubierta");
     zoomCarta.addEventListener("click", mostrarHistorial);
@@ -239,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (mazo.length > 0) {
             const carta = mazo.pop();
             cartaActual = carta;
+            mostrarZoom(carta);
             
             if (carta.tipo === "normal") {
                 const cartaDescubierta = document.getElementById("cartaDescubierta");
@@ -254,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 cartaEspecial = carta;
                 document.getElementById("modalEspecial").style.display = "flex";
             }
+            
         } else {
             alert("Mezcla las Cartas");
         }
@@ -278,6 +329,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target === modalZoom) {
             modalZoom.style.display = "none";
         }
+    });
+
+    const zoomImg = document.getElementById("zoomImg");
+    zoomImg.addEventListener("click", function() {
+        anguloZoomActual = (anguloZoomActual + 90) % 360;
+        zoomImg.style.transform = "rotate(" + anguloZoomActual + "deg)";
     });
 
 });
